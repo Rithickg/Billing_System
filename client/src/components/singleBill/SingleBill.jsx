@@ -40,27 +40,31 @@ export const SingleBill = () => {
     console.log(bill)
     console.log("order",order)
   return (
-    <div>
-        <h1>SingleBill</h1>
-        <div>
+    <div className='bg-gray-900 w-full h-screen flex flex-col justify-center content-center mt-0 mb-0 mx-auto my-auto'>
+        <h1 className='text-rose-500'>SingleBill</h1>
+        <div className='bg-slate-200 w-5/6 flex flex-col justify-center text-center'>
             <div>
                 <button onClick={handleEdit}>Edit</button>
                 <button onClick={handleDelete}>Delete</button>
             </div>
-            <div>
+            <div className='flex '>
+            <div className='border -3 border-black'>
                 <h2>INVOICE</h2>
-                <h4>GST NO:564RV685FT22Z</h4>
+                <h4>GST NO:564RV685FT22</h4>
                 <h4>MOB: 8524569513</h4>
                 <h1>SM TRADERS</h1>
                 <h5>Deals in : Building Construction Materials</h5>
                 <h4>Address : No:40-Indhra street,cholaipallam,chennai-78</h4>
                 <hr />
-                <h4>M/s.{bill.name}</h4>
                 <hr />
             </div>
-            <div>
-                <h4>Invoice No: {bill._id}</h4>
+            <div className='border -3 border-black'>
                 <h4>Date:{bill.date}</h4>
+            </div>
+            </div>
+            <div className='border -3 border-black'>
+                <h4>M/s.{bill.name}</h4>
+                <h4>Invoice No: {bill._id}</h4>
                 <h4>Purchaser GST No:{bill.gstnumber}</h4>
                 <h4>To Address:{bill.address}</h4>
             </div>
@@ -91,7 +95,7 @@ export const SingleBill = () => {
                      </tfoot>
             </table>
             </div>
-            <div>
+            <div className='border -3 border-black'>
                 <h4>Sub Total :{bill.total}</h4>
                 <h4>GST :45</h4>
                 <h4>Total :{`45 + ${parseInt(bill.total)}`}</h4>
@@ -99,7 +103,7 @@ export const SingleBill = () => {
                 <h4>Total in Words:</h4>
                 <hr />
             </div>
-            <div>
+            <div className='border -3 border-black'>
                 <h3>Terms & Conditions :</h3>
                 <p>1).Our Risk and Responsibility as soon as the goods leave our premises.</p>
                 <p>2).No Compliants will be after 24 hours of delivery.</p>

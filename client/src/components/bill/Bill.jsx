@@ -1,17 +1,16 @@
 import React from 'react'
-import './bill.css'
 import { Link } from 'react-router-dom'
 
 export const Bill = ({bill}) => {
   console.log(bill)
   return (
-    <div className='bill_info' key={bill._id}>
+    <div className='' key={bill._id}>
       <Link to={`/bill/${bill._id}`}>
-      <div>
+      <div className=' m-5 p-4 rounded-md flex font-serif flex-col justify-center text-lg bg-slate-200'>
       <h3>Name : {bill.name}</h3>
       <h3>BillNumber : {bill._id}</h3>
       <h3>MobileNumber : {bill.mobilenumber}</h3>
-      <table className='bill_tab'>
+      <table className='text-center m-1 font-mono  text-lg'>
                             <thead>
                                 <tr>
                                     <th>Item</th>
@@ -23,9 +22,9 @@ export const Bill = ({bill}) => {
                             {bill.order.map((y, i) => (
                                 <tbody >
                                     <tr key={i}>
-                                        <td>{y.item}</td>
-                                        <td>{y.quantity}</td>
-                                        <td>{y.amount}</td>
+                                        <td className='text-stone-900'>{y.item}</td>
+                                        <td className='text-stone-900'>{y.quantity}</td>
+                                        <td className='text-stone-900'>{y.amount}</td>
                                     </tr>
                                 </tbody>
                             ))}
