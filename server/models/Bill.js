@@ -20,10 +20,25 @@ const BillSchema = new mongoose.Schema({
     date: {
         type: Date
     },
-    order: {
-        type: Array,
-        required: true
+    order: [{
+        item: {
+            type: String
+        },
+        quantity: {
+            type: Number
+        },
+        amount: {
+            type: Number
+        },
+
+    }],
+    total: {
+        type: Number
     }
+    // order: {
+    //     type: Array,
+    //     required: true
+    // }
 }, { timestamps: true });
 
 

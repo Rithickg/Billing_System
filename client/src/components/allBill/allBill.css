@@ -1,0 +1,26 @@
+.bill {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.bill_info {
+    border: 3px solid black;
+    align-items: center;
+    align-content: center;
+    padding: 15px;
+    margin: 20px;
+}
+
+
+/* .bill {
+    display: flex;
+} */
+
+
+/* .bill_info {
+    flex-direction: column;
+    border: 5px solid black;
+    align-items: center;
+    align-content: center;
+} */

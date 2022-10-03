@@ -9,10 +9,25 @@ import axios from 'axios'
 export const EnterBill = () => {
 
     const [billinfo, setBillInfo] = useState({
-        name: '', mobilenumber: '', gstnumber: '', address: '', date: ''
+        name: '', mobilenumber: '', gstnumber: '', address: '', date: '',
     })
-    console.log(billinfo.name)
+
     const [billItems, setBillItems] = useState([{ item: '', quantity: '', amount: '', },]);
+
+    // const [billTotal, setBillTotal] = useState([]);
+
+    // let val = 56;
+    // let tott = () => {
+    //     let tot = billItems.map((x) => (
+    //         parseInt(x.amount)
+    //     ))
+    //     let valu = tot.reduce(function (total, num) {
+    //         return total + num
+    //     })
+    //     setBillTotal(valu)
+    // }
+    // tott()
+
 
     const handleChangeInput = (index, event) => {
         const values = [...billItems];
@@ -23,24 +38,25 @@ export const EnterBill = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
         const name = billinfo.name;
         const mobilenumber = billinfo.mobilenumber;
         const gstnumber = billinfo.gstnumber;
         const address = billinfo.address;
         const date = billinfo.date;
         const order = billItems;
-        console.log(name, mobilenumber, gstnumber, address, date, order);
+        console.log(name, mobilenumber, gstnumber, address, date, order,);
         try {
             await axios.post("http://localhost:2002/api/create", {
-                name, mobilenumber, gstnumber, address, date, order
+                name, mobilenumber, gstnumber, address, date, order,
             })
         } catch (error) {
             console.log(error)
         }
         console.log("BillInfo", billinfo)
         console.log("BillItems", billItems);
-        console.log(billinfo.name)
-        console.log(billItems[1].amount)
+
+
     }
 
     const handleAdd = () => {
@@ -52,7 +68,14 @@ export const EnterBill = () => {
         values.splice(index, 1);
         setBillItems(values)
     }
-    console.log(billItems.length)
+
+    const tot = billItems.map((x) => (
+        parseInt(x.amount)
+    ))
+    let val = tot.reduce(function (total, num) {
+        return total + num;
+    })
+    console.log(val)
 
 
     return (
@@ -64,7 +87,7 @@ export const EnterBill = () => {
                 <input type='text' id='name' placeholder='Name' name='name' value={billinfo.name} onChange={e => setBillInfo({ ...billinfo, name: e.target.value })} required />
                 <br />
                 <label htmlFor='mobilenumber'>Mobile Number: </label>
-                <input type='tel' placeholder='Mobile Number' name='mobilenumber' value={billinfo.mobilenumber} onChange={e => setBillInfo({ ...billinfo, mobilenumber: e.target.value })} />
+                <input type='number' placeholder='Mobile Number' name='mobilenumber' value={billinfo.mobilenumber} onChange={e => setBillInfo({ ...billinfo, mobilenumber: parseInt(e.target.value) })} />
                 <br />
                 <label htmlFor='gstnumber' >GST Number: </label>
                 <input type='text' placeholder='GST Number' name='gstnumber' value={billinfo.gstnumber} onChange={e => setBillInfo({ ...billinfo, gstnumber: e.target.value })} />
@@ -83,11 +106,15 @@ export const EnterBill = () => {
                         <input type='number' name='amount' placeholder='Enter Amount' value={billItems.amount} onChange={event => handleChangeInput(index, event)} />
 
                         <button onClick={() => handleAdd()}>Add</button>
-
                         <button onClick={() => handleRemove(index)}>Remove</button>
 
                     </div>
                 ))}
+                <span>
+                    {/* Total:{billTotal} */}
+                    {/* <label htmlFor='total' >Total: </label>
+                    <input type='number' id='total' value={billTotal} onChange={setBillTotal(valu)} name='total' /> */}
+                </span>
                 <button onClick={handleSubmit}>Submit</button>
             </form>
             <button onClick={handleAdd}>ADDNEW</button>
