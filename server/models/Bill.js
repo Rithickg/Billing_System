@@ -20,6 +20,9 @@ const BillSchema = new mongoose.Schema({
     date: {
         type: Date
     },
+    total: {
+        type: String,
+    },
     order: [{
         item: {
             type: String
@@ -32,9 +35,7 @@ const BillSchema = new mongoose.Schema({
         },
 
     }],
-    total: {
-        type: Number
-    }
+
     // order: {
     //     type: Array,
     //     required: true

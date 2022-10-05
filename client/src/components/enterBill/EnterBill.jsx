@@ -11,16 +11,19 @@ export const EnterBill = () => {
     const [billinfo, setBillInfo] = useState({
         name: '', mobilenumber: '', gstnumber: '', address: '', date: '',
     })
+    // const [billtotal, setBilltotal] = useState(null);
 
     const [billItems, setBillItems] = useState([{ item: '', quantity: '', amount: '', },]);
 
-    // const [billTotal, setBillTotal] = useState([]);
+    const [billTotal, setBillTotal] = useState('');
 
     // let val = 56;
+
     // let tott = () => {
     //     let tot = billItems.map((x) => (
     //         parseInt(x.amount)
     //     ))
+
     //     let valu = tot.reduce(function (total, num) {
     //         return total + num
     //     })
@@ -36,25 +39,53 @@ export const EnterBill = () => {
         console.log(index, event.target.name)
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
 
+    const tot = billItems.map((x) => (
+        parseInt(x.amount)
+    ))
+    console.log(tot)
+    let val = tot.reduce(function (total, num) {
+        return total + num
+    })
+
+    function handleChangeTotal(event) {
+        setBillTotal(val);
+    }
+    // let sum = 0;
+    // const sumation = () => {
+    //     for (const value of tot) {
+    //         sum += value;
+    //         setBillTotal(sum)
+    //     }
+    // }
+    // sumation()
+    // console.log(sum)
+    // console.log(val)
+
+    const handleSubmit = async (e) => {
+        setBillTotal(val)
+
+        e.preventDefault()
+        console.log(billTotal)
+        console.log(typeof (billTotal))
         const name = billinfo.name;
         const mobilenumber = billinfo.mobilenumber;
         const gstnumber = billinfo.gstnumber;
         const address = billinfo.address;
         const date = billinfo.date;
         const order = billItems;
-        console.log(name, mobilenumber, gstnumber, address, date, order,);
+        const total = billTotal;
+        console.log(name, mobilenumber, gstnumber, address, date, order, total);
         try {
             await axios.post("http://localhost:2002/api/create", {
-                name, mobilenumber, gstnumber, address, date, order,
+                name, mobilenumber, gstnumber, address, date, total, order,
             })
+            console.log(name, mobilenumber, gstnumber, address, date, order, total);
         } catch (error) {
             console.log(error)
         }
-        console.log("BillInfo", billinfo)
-        console.log("BillItems", billItems);
+        // console.log("BillInfo", billinfo)
+        // console.log("BillItems", billItems);
 
 
     }
@@ -69,13 +100,6 @@ export const EnterBill = () => {
         setBillItems(values)
     }
 
-    const tot = billItems.map((x) => (
-        parseInt(x.amount)
-    ))
-    let val = tot.reduce(function (total, num) {
-        return total + num;
-    })
-    console.log(val)
 
 
     return (
@@ -111,9 +135,11 @@ export const EnterBill = () => {
                     </div>
                 ))}
                 <span>
-                    {/* Total:{billTotal} */}
-                    {/* <label htmlFor='total' >Total: </label>
-                    <input type='number' id='total' value={billTotal} onChange={setBillTotal(valu)} name='total' /> */}
+                    {/* Total:{sum} */}
+                    Total:{val}
+                    Total: {billTotal}
+                    <label htmlFor='total' >Total: </label>
+                    <input type='number' id='total' value={billTotal} onChange={handleChangeTotal} name='total' />
                 </span>
                 <button onClick={handleSubmit}>Submit</button>
             </form>
