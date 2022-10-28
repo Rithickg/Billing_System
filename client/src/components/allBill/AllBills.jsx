@@ -4,7 +4,8 @@ import './allBill.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-export const AllBills = () => {
+
+export const AllBills = ({bills}) => {
     const [allbill, setAllbill] = useState([]);
 
     useEffect(() => {
@@ -35,6 +36,17 @@ export const AllBills = () => {
     printArray(arrr);
 
 
+// console.log("allBill",allbill)
+
+//     const handleDelete = async ()=>{
+//         try {
+//             await axios.delete(`http://localhost:2002/api/${allbill._id}`);
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+
+
 
 
     // const total = (arr, i) => {
@@ -60,6 +72,7 @@ export const AllBills = () => {
     // }
     // sum()
 
+console.log("id",allbill._id)
     console.log(allbill)
     return (
         <div>
@@ -67,6 +80,7 @@ export const AllBills = () => {
             <Link to='/viewbill'><h1>ViewBill 📝</h1></Link>
             <div className='bill'>
                 {allbill.map((x) => (
+            <Link to='viewbill'>
                     <div key={x._id} className='bill_info'>
                         <h3>Name:{x.name}</h3>
                         <h3>BillNumber:{x._id}</h3>
@@ -79,6 +93,7 @@ export const AllBills = () => {
                                     <th>Amount</th>
                                 </tr>
                             </thead>
+
                             {x.order.map((y, i) => (
                                 <tbody key={i}>
                                     <tr >
@@ -94,11 +109,14 @@ export const AllBills = () => {
                                 <tr>
                                     <td>Total</td>
                                     <td>2</td>
-                                    <td>11063</td>
+                                    <td>11065</td>
                                 </tr>
                             </tfoot>
                         </table>
+                                {/* <button>Edit</button>
+                                <button onClick={handleDelete}>Delete</button> */}
                     </div>
+            </Link>
                 ))
                 }
             </div>

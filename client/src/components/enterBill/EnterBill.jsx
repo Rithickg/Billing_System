@@ -1,7 +1,7 @@
 import React from 'react'
 import './enterbill.css'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 
@@ -48,9 +48,16 @@ export const EnterBill = () => {
         return total + num
     })
 
-    function handleChangeTotal(event) {
-        setBillTotal(val);
-    }
+    // function handleChangeTotal(event) {
+    //     setBillTotal(val);
+    // }
+    useEffect(()=>{
+        
+            setBillTotal(val);
+        
+    },[val])
+
+
     // let sum = 0;
     // const sumation = () => {
     //     for (const value of tot) {
@@ -137,9 +144,9 @@ export const EnterBill = () => {
                 <span>
                     {/* Total:{sum} */}
                     Total:{val}
-                    Total: {billTotal}
-                    <label htmlFor='total' >Total: </label>
-                    <input type='number' id='total' value={billTotal} onChange={handleChangeTotal} name='total' />
+                     Total: {billTotal}
+                    {/* <label htmlFor='total' >Total: </label>
+                    <input type='number' id='total' value={billTotal} onChange={handleChangeTotal} name='total' />  */}
                 </span>
                 <button onClick={handleSubmit}>Submit</button>
             </form>
@@ -163,6 +170,12 @@ export const EnterBill = () => {
                             </tr>
                         </tbody>
                     ))}
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <th colSpan='2'>{billTotal}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
             <Link to='/viewbill'><h1>ViewBill 📝</h1></Link>

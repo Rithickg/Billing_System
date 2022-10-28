@@ -4,6 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import { EnterBill } from './components/enterBill/EnterBill';
 import { ViewBill } from './components/viewBill/ViewBill';
 import { AllBills } from './components/allBill/AllBills';
+import {SingleBill} from './components/singleBill/SingleBill'
+import {Bills} from './components/bills/Bills';
+import {Bill} from './components/bill/Bill'
+import {EditBill} from './components/editBill/EditBill'
+import {Home} from './pages/home/Home'
 
 function App() {
     return (
@@ -11,6 +16,11 @@ function App() {
             <h1> Bill SYSTEM</h1>
             <Routes>
                 <Route path="/" element={<EnterBill />} />
+                <Route path="/home" element={<Home />} />
+                <Route path='/bill' element={<Bill />} />
+                <Route path='/bill/edit/:billId' element={<EditBill />} />
+                <Route path ='/bill/:billId' element={<SingleBill />} />
+                <Route path='/bills' element={<Bills />} />
                 <Route path="/viewbill" element={<ViewBill />} />
                 <Route path="/allbills" element={<AllBills />} />
             </Routes>
