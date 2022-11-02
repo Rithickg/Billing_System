@@ -36,10 +36,7 @@ const BillSchema = new mongoose.Schema({
 
     }],
 
-    // order: {
-    //     type: Array,
-    //     required: true
-    // }
+  
 }, { timestamps: true });
 
 

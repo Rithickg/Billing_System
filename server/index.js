@@ -4,6 +4,7 @@ const dotenv = require('dotenv')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const billRoute = require('./routes/bill')
+const userRoute =require('./routes/user')
 
 app.use(express.json())
 app.use(cors())
@@ -18,6 +19,7 @@ mongoose.connect(process.env.MONGO_URL, {
     .catch((err) => console.log(err))
 
 app.use('/api', billRoute);
+app.use('/api',userRoute);
 
 
 app.listen('2002', () => {
