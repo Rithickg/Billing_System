@@ -83,67 +83,49 @@ console.log("Bill Total",billTotal)
     }
     
     return (
-        <div>
-            <h1>EnterBill</h1>
-            <form className='enterbill'>
+        <div className='flex flex-col h-full font-serif bg-gray-900 mx-0'>
+            <h1 className='text-3xl text-white text-center'>EditBill</h1>
+            <form className='bg-gray-300 sm:w-5/6 md:w-1/2 mx-auto p-4 rounded-md flex flex-col justify-center'>
                 <label htmlFor='name'>Name: </label>
-                <input type='text' id='name' placeholder='Name' name='name' value={name} onChange={e => setName(e.target.value)} required />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='text' id='name' placeholder='Name' name='name' value={name} onChange={e => setName(e.target.value)} required />
                 <br />
                 <label htmlFor='mobilenumber'>Mobile Number: </label>
-                <input type='number' placeholder='Mobile Number' name='mobilenumber' value={mobilenumber} onChange={e => setMobilenumber(e.target.value)} />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='number' placeholder='Mobile Number' name='mobilenumber' value={mobilenumber} onChange={e => setMobilenumber(e.target.value)} />
                 <br />
                 <label htmlFor='gstnumber' >GST Number: </label>
-                <input type='text' placeholder='GST Number' name='gstnumber' value={gstnumber} onChange={e => setGstnumber(e.target.value)} />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='text' placeholder='GST Number' name='gstnumber' value={gstnumber} onChange={e => setGstnumber(e.target.value)} />
                 <br />
                 <label htmlFor='address'>Address: </label>
-                <input type='text' placeholder='Address' name='address' value={address} onChange={e => setAddress( e.target.value )} required />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='text' placeholder='Address' name='address' value={address} onChange={e => setAddress( e.target.value )} required />
                 <br />
                 <label htmlFor='date' >Date: </label>
-
-                
-
-
-{/* 
-                {order.map((billItems, index) => (
-                    <div key={index}>
-                        <input type='text' required name='item' placeholder='Enter New Item' value={billItems.item} onChange={event => handleChangeInput(index, event)} />
-                        <input type='number' name='quantity' placeholder='Enter Quantity' value={billItems.quantity} onChange={event => handleChangeInput(index, event)} />
-                        <input type='number' name='amount' placeholder='Enter Amount' value={billItems.amount} onChange={event => handleChangeInput(index, event)} />
-
-                        <button onClick={() => handleAdd()}>Add</button>
-                        <button onClick={() => handleRemove(index)}>Remove</button>
-
-                    </div>
-                ))} */}
-
-{/* 
-              {order.map((b,index)=>{
-                return(
-                    <div key={index}>
-                        <input type='text' required name='item' placeholder='Enter New Item' value={b.item} onChange={e=>change(index,e)}/>
-                        <input type='number' name='quantity' placeholder='Enter Quantity' value={b.quantity} onChange={e=>change(index,e)} />
-                        <input type='number' name='amount' placeholder='Enter Amount' value={b.amount} onChange={e=>change(index,e)}/>
-
-                    </div>
-                )
-              })} */}
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='date' id='date' value={date} onChange={e => setDate( e.target.value )} name='date' />
+                <br/>
+                <br/>
 
                {billItems.map((billItems, index) => (
-                    <div key={index}>
-                        <input type='text' required name='item' placeholder='Enter New Item' value={billItems.item} onChange={event => handleChangeInput(index, event)} />
-                        <input type='number' name='quantity' placeholder='Enter Quantity' value={billItems.quantity} onChange={event => handleChangeInput(index, event)} />
-                        <input type='number' name='amount' placeholder='Enter Amount' value={billItems.amount} onChange={event => handleChangeInput(index, event)} />
-
-                        <button onClick={() => handleAdd()}>Add</button>
-                        <button onClick={() => handleRemove(index)}>Remove</button>
-
+                    <div className='flex flex-col justify-center p-1' key={index}>
+                        <input className='m-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                            type='text' required name='item' placeholder='Enter New Item' value={billItems.item} onChange={event => handleChangeInput(index, event)} />
+                        <input className='m-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                            type='number' name='quantity' placeholder='Enter Quantity' value={billItems.quantity} onChange={event => handleChangeInput(index, event)} />
+                        <input className='m-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                            type='number' name='amount' placeholder='Enter Amount' value={billItems.amount} onChange={event => handleChangeInput(index, event)} />
+                     <div className='flex justify-center'> 
+                        <button className='bg-rose-500 p-1 m-1 rounded-md' onClick={() => handleAdd()}>Add</button>
+                        <button className='bg-rose-500 p-1 m-1 rounded-md' onClick={() => handleRemove(index)}>Remove</button>
+                     </div>
                     </div>
                 ))}
 
-                <span>Total: {billTotal}</span>
-                <button onClick={handleEdit}>Edit</button>
+                <span className='text-center'>Total: {billTotal}</span>
+                <button className='bg-rose-500 w-fit mx-auto p-2 m-1 rounded-md' onClick={handleEdit}>Edit</button>
             </form>
-            {/* <button onClick={handleAdd}>ADDNEW</button> */}
         </div>
     )
 }

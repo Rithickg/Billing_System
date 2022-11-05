@@ -1,9 +1,6 @@
 import React from 'react'
-import './enterbill.css'
-import { Link } from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
-
 
 
 export const EnterBill = () => {
@@ -53,6 +50,7 @@ export const EnterBill = () => {
             await axios.post("http://localhost:2002/api/create", {
                 name, mobilenumber, gstnumber, address, date, total, order,
             })
+            window.location.replace('http://localhost:3000/home')
             console.log(name, mobilenumber, gstnumber, address, date, order, total);
         } catch (error) {
             console.log(error)
@@ -71,46 +69,52 @@ export const EnterBill = () => {
 
 
     return (
-        <div>
-            <h1>EnterBill</h1>
-            <form className='enterbill'>
-
+        <div className='flex flex-col h-full font-serif bg-gray-900 mx-0'>
+            <h1 className='text-3xl text-white text-center'>EnterBill</h1>
+            <form className='bg-gray-300 sm:w-5/6 md:w-1/2 mx-auto p-4 rounded-md flex flex-col justify-center'>
                 <label htmlFor='name'>Name: </label>
-                <input type='text' id='name' placeholder='Name' name='name' value={billinfo.name} onChange={e => setBillInfo({ ...billinfo, name: e.target.value })} required />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                 type='text' id='name' placeholder='Enter Name' name='name' value={billinfo.name} onChange={e => setBillInfo({ ...billinfo, name: e.target.value })} required />
                 <br />
                 <label htmlFor='mobilenumber'>Mobile Number: </label>
-                <input type='number' placeholder='Mobile Number' name='mobilenumber' value={billinfo.mobilenumber} onChange={e => setBillInfo({ ...billinfo, mobilenumber: parseInt(e.target.value) })} />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                type='number' placeholder='Enter Mobile Number' name='mobilenumber' value={billinfo.mobilenumber} onChange={e => setBillInfo({ ...billinfo, mobilenumber: parseInt(e.target.value) })} />
                 <br />
                 <label htmlFor='gstnumber' >GST Number: </label>
-                <input type='text' placeholder='GST Number' name='gstnumber' value={billinfo.gstnumber} onChange={e => setBillInfo({ ...billinfo, gstnumber: e.target.value })} />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='text' placeholder='Enter GST Number' name='gstnumber' value={billinfo.gstnumber} onChange={e => setBillInfo({ ...billinfo, gstnumber: e.target.value })} />
                 <br />
                 <label htmlFor='address'>Address: </label>
-                <input type='text' placeholder='Address' name='address' value={billinfo.address} onChange={e => setBillInfo({ ...billinfo, address: e.target.value })} required />
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='text' placeholder='Enter Address' name='address' value={billinfo.address} onChange={e => setBillInfo({ ...billinfo, address: e.target.value })} required />
                 <br />
                 <label htmlFor='date' >Date: </label>
-                <input type='date' id='date' onChange={e => setBillInfo({ ...billinfo, date: e.target.value })} name='date' />
-
+                <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                  type='date' id='date' onChange={e => setBillInfo({ ...billinfo, date: e.target.value })} name='date' />
+                <br/>
                 {billItems.map((billItems, index) => (
-                    <div key={index}>
-
-                        <input type='text' required name='item' placeholder='Enter New Item' value={billItems.item} onChange={event => handleChangeInput(index, event)} />
-                        <input type='number' name='quantity' placeholder='Enter Quantity' value={billItems.quantity} onChange={event => handleChangeInput(index, event)} />
-                        <input type='number' name='amount' placeholder='Enter Amount' value={billItems.amount} onChange={event => handleChangeInput(index, event)} />
-
-                        <button onClick={() => handleAdd()}>Add</button>
-                        <button onClick={() => handleRemove(index)}>Remove</button>
-
+                    <div className='flex flex-col justify-center p-1' key={index}>
+                        <input className='m-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                           type='text' required name='item' placeholder='Enter New Item' value={billItems.item} onChange={event => handleChangeInput(index, event)} />
+                        <input className='m-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                           type='number' name='quantity' placeholder='Enter Quantity' value={billItems.quantity} onChange={event => handleChangeInput(index, event)} />
+                        <input className='m-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                           type='number' name='amount' placeholder='Enter Amount' value={billItems.amount} onChange={event => handleChangeInput(index, event)} />
+                        <div className='flex justify-center'>
+                        <button className='bg-rose-500 p-1 m-1 rounded-md' onClick={() => handleAdd()}>Add</button>
+                        <button className='bg-rose-500 p-1 m-1 rounded-md' onClick={() => handleRemove(index)}>Remove</button>
+                        </div>
                     </div>
+                    
                 ))}
-                <span>
-                    Total:{val}
+                <span className='text-center'>
                     Total: {billTotal}
                 </span>
-                <button onClick={handleSubmit}>Submit</button>
+                <button className='bg-rose-500 w-fit mx-auto p-2 m-1 rounded-md' onClick={handleSubmit}>Submit</button>
             </form>
             <button onClick={handleAdd}>ADDNEW</button>
-            <h1>DisplayBill</h1>
-            <div>
+            <div className='bg-gray-300 sm:w-5/6 overflow-auto md:w-4/6 mx-auto p-4 rounded-md flex flex-col justify-center'>
+            <h1 className='text-center text-xl'>Display-Bill</h1>
                 <table >
                     <thead>
                         <tr>
@@ -122,9 +126,9 @@ export const EnterBill = () => {
                     {billItems.map((billItems, index) => (
                         <tbody key={index}>
                             <tr>
-                                <td>{billItems.item}</td>
-                                <td>{billItems.quantity}</td>
-                                <td>{billItems.amount}</td>
+                                <td className='text-stone-900'>{billItems.item}</td>
+                                <td className='text-stone-900'>{billItems.quantity}</td>
+                                <td className='text-stone-900'>{billItems.amount}</td>
                             </tr>
                         </tbody>
                     ))}
@@ -135,9 +139,10 @@ export const EnterBill = () => {
                         </tr>
                     </tfoot>
                 </table>
+                {/* <Link to='/viewbill'><h1>ViewBill 📝</h1></Link>
+                <Link to='/allbills'><h1>AllBills 📝</h1></Link> */}
             </div>
-            <Link to='/viewbill'><h1>ViewBill 📝</h1></Link>
-            <Link to='/allbills'><h1>AllBills 📝</h1></Link>
+           
         </div>
     )
 }
