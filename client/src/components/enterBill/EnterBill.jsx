@@ -50,7 +50,7 @@ export const EnterBill = () => {
             await axios.post("http://localhost:2002/api/create", {
                 name, mobilenumber, gstnumber, address, date, total, order,
             })
-            window.location.replace('http://localhost:3000/home')
+            window.location.replace('http://localhost:3000/bills')
             console.log(name, mobilenumber, gstnumber, address, date, order, total);
         } catch (error) {
             console.log(error)
