@@ -1,12 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import {useSelector, useDispatch} from 'react-redux'
+import {login} from '../../redux/reducer/authSlice'
+import { addUserData } from '../../redux/reducer/userSlice'
+// import { addUserData } from '../../redux/reducer/userSlice'
 
 
 export const Login = () => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
-
+    const dispatch =useDispatch();
+    let name ='jokar';
+    const isLoggedin = useSelector((state)=>state.auth.isLoggedin)
+    console.log(isLoggedin)
     const handleSubmit= async(e)=>{
         e.preventDefault()
         try {
@@ -15,13 +22,14 @@ export const Login = () => {
            })
            console.log(data.data)
            const tokendata = data.data
-            console.log(tokendata)
-           
-
+           console.log(tokendata)
+           dispatch(addUserData({
+            name,email
+           }))
+           dispatch(login())
            if(tokendata){
             localStorage.setItem('token',tokendata);
-            alert('Login Successful')
-            window.location.replace('http://localhost:3000/profile')
+            //  window.location.replace('http://localhost:3000/')
            }else{
             alert('Please Try Again')
            }

@@ -38,7 +38,7 @@ export const NavBar = () => {
                         <Link to="/register" className='text-gray-800 hover:text-gray-400 duration-500'>REGISTER</Link>
                     </li>
                 <Button>
-                       <Link to="/enterbill" >Get Started</Link>
+                       <Link to="/content" >Get Started</Link>
                 </Button>
             </ul>
         </div>
