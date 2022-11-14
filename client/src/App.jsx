@@ -18,14 +18,14 @@ function App() {
         <div className="App">
             <Routes>
                 <Route path="/" element={<MainPage />} />
-                <Route path="/enterbill" element={<EnterBill />} />
+                <Route path="/enterbill" element={isLoggedin ? <EnterBill /> : <Login/>} />
                 <Route path="/bills" element={ isLoggedin ? <Home /> : <Login/>} /> 
                 <Route path="/login" element={<Login/>} />
-                <Route path='/bill/edit/:billId' element={<EditBill />} />
+                <Route path='/bill/edit/:billId' element={isLoggedin ? <EditBill /> : <Login/>} />
                 <Route path ='/bill/:billId' element={<SingleBill />} />
                 <Route path="/register" element={<Register/>} />
                 <Route path='/profile' element={ isLoggedin ? <Profile/> : <Login/> }/>
-                <Route path='/content' element={<Content/>}/>
+                <Route path='/content' element={isLoggedin ? <Content/> : <Login/>}/>
             </Routes>
         </div>
     );

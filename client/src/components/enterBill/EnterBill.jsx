@@ -1,9 +1,17 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 
 
 export const EnterBill = () => {
+    const navigate = useNavigate();
+    const userData =useSelector((state)=>state.user.user)
+    const isLoggedin =useSelector((state)=>state.auth.isLoggedin)
+    console.log(isLoggedin)
+    let email = userData.email;
 
     const [billinfo, setBillInfo] = useState({
         name: '', mobilenumber: '', gstnumber: '', address: '', date: '',
@@ -18,7 +26,6 @@ export const EnterBill = () => {
         setBillItems(values);
         console.log(index, event.target.name)
     }
-
 
     const tot = billItems.map((x) => (
         parseInt(x.amount)
@@ -45,13 +52,14 @@ export const EnterBill = () => {
         const date = billinfo.date;
         const order = billItems;
         const total = billTotal;
-        console.log(name, mobilenumber, gstnumber, address, date, order, total);
+        console.log(name, mobilenumber, gstnumber, address, date, order, total,email);
         try {
             await axios.post("http://localhost:2002/api/create", {
-                name, mobilenumber, gstnumber, address, date, total, order,
+                name, mobilenumber, gstnumber, address, date, total, order,email
             })
-            window.location.replace('http://localhost:3000/bills')
-            console.log(name, mobilenumber, gstnumber, address, date, order, total);
+            // window.location.replace('http://localhost:3000/bills')
+            navigate('/bills');
+            console.log(name, mobilenumber, gstnumber, address, date, order, total,email);
         } catch (error) {
             console.log(error)
         }
