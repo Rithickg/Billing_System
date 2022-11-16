@@ -10,7 +10,8 @@ app.use(express.json())
 app.use(cors())
 dotenv.config()
 
-port = process.env.PORT
+let port = process.env.PORT || 2002
+
 mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -21,7 +22,6 @@ mongoose.connect(process.env.MONGO_URL, {
 app.use('/api', billRoute);
 app.use('/api',userRoute);
 
-
-app.listen('2002', () => {
+app.listen(port, () => {
     console.log(`The server is running on port ${port}...`)
 })
