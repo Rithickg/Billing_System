@@ -4,9 +4,12 @@ import {RiBillLine} from 'react-icons/ri'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { Button } from './Button'
+import { useSelector } from 'react-redux'
 
 export const NavBar = () => {
     const [open,setOpen]=useState(false);
+    const isLoggedin = useSelector((state)=>state.auth.isLoggedin)
+    console.log(isLoggedin)
 
   return (
     <div className='shadow-md w-full fixed top-0 left-0'>
@@ -29,11 +32,12 @@ export const NavBar = () => {
                         <Link to="/bills" className='text-gray-800 hover:text-gray-400 duration-500'>BILLS</Link>
                     </li>
                     <li className='md:ml-8 text-xl md:my-0 my-7'>
-                        <Link to="/profile" className='text-gray-800 hover:text-gray-400 duration-500'>PROFILE</Link>
+                        <Link to="/enterbill" className='text-gray-800 hover:text-gray-400 duration-500'>NEWBILL</Link>
                     </li>
                     <li className='md:ml-8 text-xl md:my-0 my-7'>
                         <Link to="/login" className='text-gray-800 hover:text-gray-400 duration-500'>LOGIN</Link>
                     </li>
+                    
                     <li className='md:ml-8 text-xl md:my-0 my-7'>
                         <Link to="/register" className='text-gray-800 hover:text-gray-400 duration-500'>REGISTER</Link>
                     </li>

@@ -4,10 +4,12 @@ import axios from 'axios'
 import {useSelector, useDispatch} from 'react-redux'
 import {login} from '../../redux/reducer/authSlice'
 import { addUserData } from '../../redux/reducer/userSlice'
+import { useNavigate } from 'react-router-dom'
 // import { addUserData } from '../../redux/reducer/userSlice'
 
 
 export const Login = () => {
+    const navigate =useNavigate()
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
     const dispatch =useDispatch();
@@ -29,7 +31,7 @@ export const Login = () => {
            dispatch(login())
            if(tokendata){
             localStorage.setItem('token',tokendata);
-            //  window.location.replace('http://localhost:3000/')
+            navigate('/content');
            }else{
             alert('Please Try Again')
            }
@@ -49,6 +51,7 @@ export const Login = () => {
             <lable className='text-gray-900 p-1' htmlFor='password'>Password:</lable>
             <input className='m-1 p-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
                     type='password' id='password' name='password' placeholder='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+             <p className='text-sm p-1 text-gray-600'>Don't have an account? <span onClick={()=>navigate('/register')} className='text-sm text-gray-900 cursor-pointer'>Register now</span></p>      
             <button className='bg-rose-500 text-gray-900 rounded-md w-fit m-2 p-2 mx-auto' onClick={handleSubmit}>Login</button>
         </form>
     </div>

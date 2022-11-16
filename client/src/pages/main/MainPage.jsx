@@ -8,6 +8,8 @@ import svg1 from '../../utils/undraw_receipt_re_fre3.svg'
 import {BsFacebook} from 'react-icons/bs'
 import {AiFillInstagram,AiFillTwitterCircle} from 'react-icons/ai'
 import { NavBar } from '../navbar/NavBar'
+import { Button } from '../navbar/Button'
+import { Link } from 'react-router-dom'
 
 
 export const MainPage = () => {
@@ -22,7 +24,11 @@ export const MainPage = () => {
                  Access the endless possibility of your business with smart dashboards to improve your business.
                  join us today to grow togather.
             </p>
-            <button className='bg-rose-600 hover:bg-slate-500 w-fit my-3 p-2 mx-auto rounded-md'>Demo Video</button>
+            <button className='w-fit my-3 p-2 mx-auto rounded-md cursor-pointer'>
+                <Button>
+                   <Link to="/content" >Get Started</Link>
+                </Button>
+            </button>
             </div>
             <div className='w-1/2 flex flex-col sm:mx-auto justify-center content-center'>
             <img className='h-2/3' src={svg1} alt='bill'/>

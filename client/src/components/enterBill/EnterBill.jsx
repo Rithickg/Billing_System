@@ -57,7 +57,7 @@ export const EnterBill = () => {
             await axios.post("http://localhost:2002/api/create", {
                 name, mobilenumber, gstnumber, address, date, total, order,email
             })
-            // window.location.replace('http://localhost:3000/bills')
+            
             navigate('/bills');
             console.log(name, mobilenumber, gstnumber, address, date, order, total,email);
         } catch (error) {
@@ -78,6 +78,7 @@ export const EnterBill = () => {
 
     return (
         <div className='flex flex-col h-full font-serif bg-gray-900 mx-0'>
+        <button onClick={()=>navigate('/content')} className='bg-rose-500 w-fit p-2 mt-2 ml-2 rounded-md'>Back</button>
             <h1 className='text-3xl text-white text-center'>EnterBill</h1>
             <form className='bg-gray-300 sm:w-5/6 md:w-1/2 mx-auto p-4 rounded-md flex flex-col justify-center'>
                 <label htmlFor='name'>Name: </label>

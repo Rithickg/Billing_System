@@ -1,8 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export const Register = () => {
+    const navigate =useNavigate()
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
@@ -32,6 +34,7 @@ export const Register = () => {
             <lable className='text-gray-900 p-1 ' htmlFor='password'>Password:</lable>
             <input className='m-1 p-1 text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
                      type='password' id='password' name='password' placeholder='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+             <p className='text-sm p-1 text-gray-600'>Already have an account? <span onClick={()=>navigate('/login')} className='text-sm text-gray-900 cursor-pointer'>Login</span></p>      
             <button className='bg-rose-500 text-gray-900 rounded-md w-fit m-2 p-2 mx-auto' onClick={handleSubmit}>Register</button>
         </form>
     </div>

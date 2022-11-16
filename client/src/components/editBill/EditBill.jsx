@@ -1,15 +1,14 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation ,useNavigate} from 'react-router-dom'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 
 
 
 export const EditBill = () => {
-
+    const navigate =useNavigate();
     const location =useLocation()
     const path =location.pathname.split('/')[3];
-
     const [bill,setBill] =useState([]);
     const [name,setName]=useState()
     const [mobilenumber,setMobilenumber]=useState()
@@ -19,7 +18,7 @@ export const EditBill = () => {
     const [billItems, setBillItems] = useState([{ item: '', quantity: '', amount: '', },]);
     const [billTotal, setBillTotal] = useState('');
     
-    
+   
     useEffect(()=>{
       const getBill =async ()=>{
           const res = await axios.get('http://localhost:2002/api/'+ path);
@@ -59,12 +58,14 @@ export const EditBill = () => {
 console.log("Bill Total",billTotal)
 
 
-    const handleEdit = async () => {
+    const handleEdit = async (e) => {
+        e.preventDefault()
         try {
             await axios.put(`http://localhost:2002/api/${bill._id}`,{
                 name:name,mobilenumber:mobilenumber,gstnumber:gstnumber,address:address,date:date,order:billItems,total:billTotal
             })
-            window.location.replace(`http://localhost:3000/bill/${bill._id}`)
+            
+            navigate(`/bill/${bill._id}`)
 
         } catch (error) {
             console.log(error)
@@ -83,7 +84,7 @@ console.log("Bill Total",billTotal)
     }
     
     return (
-        <div className='flex flex-col h-full font-serif bg-gray-900 mx-0'>
+        <div className='flex flex-col h-screen font-serif bg-gray-900 mx-0'>
             <h1 className='text-3xl text-white text-center'>EditBill</h1>
             <form className='bg-gray-300 sm:w-5/6 md:w-1/2 mx-auto p-4 rounded-md flex flex-col justify-center'>
                 <label htmlFor='name'>Name: </label>

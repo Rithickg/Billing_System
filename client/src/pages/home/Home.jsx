@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
 
+
 import {Bills} from '../../components/bills/Bills'
 import axios from 'axios';
 
@@ -16,7 +17,7 @@ export const Home = () => {
     }, [])
     console.log("Home Bills",bills)
   return (
-    <div>
+    <div className='h-full'>
         <Bills bills={bills}/>
     </div>
   )

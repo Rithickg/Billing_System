@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import axios from 'axios';
 import {useReactToPrint} from 'react-to-print'
-import { useLocation } from 'react-router-dom';
+import { useLocation ,useNavigate } from 'react-router-dom';
 
 export const SingleBill = () => {
     const location =useLocation()
+    const navigate =useNavigate()
     const path =location.pathname.split('/')[2];
     const [bill,setBill] =useState([]);
     const [order,setOrder] =useState([]);
@@ -25,7 +26,7 @@ export const SingleBill = () => {
     const handleDelete = async ()=>{
         try {
             await axios.delete(`http://localhost:2002/api/${bill._id}`)
-            window.location.replace('http://localhost:3000/home')
+            navigate('/bills')
         } catch (error) {
             console.log(error)
         }
@@ -33,7 +34,7 @@ export const SingleBill = () => {
 
     const handleEdit =async ()=>{
         try {
-            window.location.replace(`http://localhost:3000/bill/edit/${bill._id}`)
+            navigate(`/bill/edit/${bill._id}`)
         } catch (error) {
             console.log(error)
         }
@@ -50,7 +51,9 @@ export const SingleBill = () => {
     });
 
   return (
+
     <div className=' bg-gray-900 font-serif w-full h-full flex flex-col justify-center'>
+        <button onClick={()=>navigate('/bills')} className='bg-rose-500 w-fit p-2 mt-2 ml-2 rounded-md'>Back</button>
         <h1 className='text-rose-500 text-center m-2 p-2'>Bill NO:{bill._id}</h1>
         <div ref={componentRef} className=' bg-slate-200 w-auto flex flex-col sm:m-3 md:m-auto  rounded-lg '>
             <div className='flex flex-wrap px-2 py-2'>
@@ -75,7 +78,7 @@ export const SingleBill = () => {
                 <h4>Purchaser GST No:{bill.gstnumber}</h4>
                 <h4>To Address:{bill.address}</h4>
             </div>
-            <div className='flex items-center'>
+            <div className='flex items-center p-2'>
                 <h4>Invoice No:{bill._id}</h4>
             </div>
             </div>
