@@ -14,7 +14,7 @@ import { Content } from './pages/content/Content';
 function App() {
     const isLoggedin =useSelector((state)=>state.auth.isLoggedin)
     return (
-        <div className="App">
+        <div className="App ">
             <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/enterbill" element={isLoggedin ? <EnterBill /> : <Login/>} />

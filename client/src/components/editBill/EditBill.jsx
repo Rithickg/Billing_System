@@ -21,7 +21,7 @@ export const EditBill = () => {
    
     useEffect(()=>{
       const getBill =async ()=>{
-          const res = await axios.get('http://localhost:2002/api/'+ path);
+          const res = await axios.get('https://web-production-aa15.up.railway.app/api/'+ path);
           const data =res.data;
           console.log("res.data",data)
           setBill(data)
@@ -61,7 +61,7 @@ console.log("Bill Total",billTotal)
     const handleEdit = async (e) => {
         e.preventDefault()
         try {
-            await axios.put(`http://localhost:2002/api/${bill._id}`,{
+            await axios.put(`https://web-production-aa15.up.railway.app/api/${bill._id}`,{
                 name:name,mobilenumber:mobilenumber,gstnumber:gstnumber,address:address,date:date,order:billItems,total:billTotal
             })
             
@@ -84,9 +84,9 @@ console.log("Bill Total",billTotal)
     }
     
     return (
-        <div className='flex flex-col h-screen font-serif bg-gray-900 mx-0'>
+        <div className='flex flex-col h-[100%] font-serif bg-gray-900 mx-0'>
             <h1 className='text-3xl text-white text-center'>EditBill</h1>
-            <form className='bg-gray-300 sm:w-5/6 md:w-1/2 mx-auto p-4 rounded-md flex flex-col justify-center'>
+            <form className='bg-gray-300 sm:w-5/6 md:w-1/2 mx-auto  p-4 rounded-md flex flex-col justify-center'>
                 <label htmlFor='name'>Name: </label>
                 <input className='text-gray-700 bg-white  bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
                   type='text' id='name' placeholder='Name' name='name' value={name} onChange={e => setName(e.target.value)} required />

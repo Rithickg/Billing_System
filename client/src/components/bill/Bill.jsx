@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom'
 
 export const Bill = ({bill}) => {
     const userData = useSelector((state)=>state.user.user);
-    console.log(userData)
-    console.log(bill)
-    console.log(bill.email);
+    // console.log(userData)
+    // console.log(bill)
+    // console.log(bill.email);
   return (
   
-    <div key={bill._id}>
+    <div className='bg-gray-900' key={bill._id}>
         {
             bill.email === userData.email && (
                 <Link to={`/bill/${bill._id}`}>
@@ -18,7 +18,7 @@ export const Bill = ({bill}) => {
       <h3>Name : {bill.name}</h3>
       <h3>BillNumber : {bill._id}</h3>
       <h3>MobileNumber : {bill.mobilenumber}</h3>
-      <table className='text-center m-1 font-mono  text-lg'>
+      <table className='text-center m-1 font-mono text-lg'>
                             <thead>
                                 <tr>
                                     <th>Item</th>
@@ -37,7 +37,7 @@ export const Bill = ({bill}) => {
                                 </tbody>
                             ))}
                             <tfoot>
-                                <tr height = '20px'></tr>
+                                <tr height ='20px'></tr>
                                 <tr>
                                     <td colSpan='2'>Total</td>
                                     <td>{bill.total}</td>

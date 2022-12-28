@@ -19,7 +19,7 @@ export const Login = () => {
     const handleSubmit= async(e)=>{
         e.preventDefault()
         try {
-          const data =  await axios.post("http://localhost:2002/api/login",{
+          const data =  await axios.post("https://web-production-aa15.up.railway.app/api/login",{
             email,password
            })
            console.log(data.data)

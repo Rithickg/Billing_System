@@ -12,7 +12,7 @@ export const Register = () => {
     const handleSubmit= async(e)=>{
         e.preventDefault()
         try {
-            await axios.post("http://localhost:2002/api/register",{
+            await axios.post("https://web-production-aa15.up.railway.app/api/register",{
             name,email,password
            })
            window.location.replace("http://localhost:3000/login");

@@ -15,7 +15,7 @@ export const SingleBill = () => {
 
     useEffect(()=>{
         const getBill =async ()=>{
-            const res = await axios.get('http://localhost:2002/api/'+ path);
+            const res = await axios.get('https://web-production-aa15.up.railway.app/api/'+ path);
             console.log("res.data",res.data)
             setBill(res.data)
             setOrder(res.data.order)
@@ -25,7 +25,7 @@ export const SingleBill = () => {
 
     const handleDelete = async ()=>{
         try {
-            await axios.delete(`http://localhost:2002/api/${bill._id}`)
+            await axios.delete(`https://web-production-aa15.up.railway.app/api/${bill._id}`)
             navigate('/bills')
         } catch (error) {
             console.log(error)
@@ -39,9 +39,9 @@ export const SingleBill = () => {
             console.log(error)
         }
     }
-    console.log("bill.order",bill.order)
-    console.log(bill)
-    console.log("order",order)
+    // console.log("bill.order",bill.order)
+    // console.log(bill)
+    // console.log("order",order)
 
     const componentRef =useRef()
     const handlePrint =useReactToPrint({

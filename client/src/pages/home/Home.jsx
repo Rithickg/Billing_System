@@ -10,14 +10,14 @@ export const Home = () => {
 
     useEffect(() => {
         const data = async () => {
-            const response = await axios.get("http://localhost:2002/api/display")
+            const response = await axios.get("https://web-production-aa15.up.railway.app/api/display")
             setbills(response.data)
         }
         data();
     }, [])
     console.log("Home Bills",bills)
   return (
-    <div className='h-full'>
+    <div className='bg-gray-900 h-screen'>
         <Bills bills={bills}/>
     </div>
   )
