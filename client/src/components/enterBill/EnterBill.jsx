@@ -54,7 +54,7 @@ export const EnterBill = () => {
         const total = billTotal;
         console.log(name, mobilenumber, gstnumber, address, date, order, total,email);
         try {
-            await axios.post("https://web-production-aa15.up.railway.app/api/create", {
+            await axios.post("https://billing-system-api.onrender.com/api/create", {
                 name, mobilenumber, gstnumber, address, date, total, order,email
             })
             

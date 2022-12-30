@@ -10,7 +10,7 @@ export const Home = () => {
 
     useEffect(() => {
         const data = async () => {
-            const response = await axios.get("https://web-production-aa15.up.railway.app/api/display")
+            const response = await axios.get("https://billing-system-api.onrender.com/api/display")
             setbills(response.data)
         }
         data();

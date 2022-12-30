@@ -21,7 +21,7 @@ export const EditBill = () => {
    
     useEffect(()=>{
       const getBill =async ()=>{
-          const res = await axios.get('https://web-production-aa15.up.railway.app/api/'+ path);
+          const res = await axios.get('https://billing-system-api.onrender.com/api/'+ path);
           const data =res.data;
           console.log("res.data",data)
           setBill(data)
@@ -61,7 +61,7 @@ console.log("Bill Total",billTotal)
     const handleEdit = async (e) => {
         e.preventDefault()
         try {
-            await axios.put(`https://web-production-aa15.up.railway.app/api/${bill._id}`,{
+            await axios.put(`https://billing-system-api.onrender.com/api/${bill._id}`,{
                 name:name,mobilenumber:mobilenumber,gstnumber:gstnumber,address:address,date:date,order:billItems,total:billTotal
             })
             
